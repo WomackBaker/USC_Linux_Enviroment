@@ -1,4 +1,4 @@
-#UofSC CCDC Linux Enviroment
+# UofSC CCDC Linux Environment
 Steps to set up dockers:
 
 1. Install docker
