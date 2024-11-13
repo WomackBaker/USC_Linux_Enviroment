@@ -1,4 +1,4 @@
-#UofSC CCDC Linux Enviroment
+# UofSC CCDC Linux Enviroment
 Steps to set up dockers:
 
 1. Install docker
@@ -28,7 +28,7 @@ https://www.docker.com/get-started/
     admin
     root
 
-# Somethings you should be do to harden:
+# Somethings you should do to harden:
 - Change all Passwords
 - Change database Passwords
 - Find any unused/exposed ports
