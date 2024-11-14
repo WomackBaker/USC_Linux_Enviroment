@@ -1,5 +1,10 @@
 version: "3.9"
 services:
+  jump_box:
+      build: ../images/jump_box
+      ports:
+        - "1234:22"
+      hostname: jump_box
   ub_1:
     build: ../images/ubuntu_practice
     ports:
@@ -18,11 +23,6 @@ services:
       - "8600:22"
       - "8601:80"
     hostname: web_three
-  arch: #docker:docker
-    image: retorillo/archlinux-sshd
-    ports:
-      - "9000:22"
-    hostname: arch
   centos: 
   #ssh -p 8700 -i vagrant app-admin@localhost
   #https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant
