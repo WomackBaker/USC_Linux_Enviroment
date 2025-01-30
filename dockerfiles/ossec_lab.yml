@@ -1,18 +1,18 @@
 version: "3.9"
 services:
   ub_1: #root:root
-    build: ./images/ubuntu_practice
+    build: ../images/ubuntu_practice
     ports:
       - "8001:22"
       - "8000:80"
     hostname: server
   ub_2: #root:root
-    build: ./images/ubuntu_practice
+    build: ../images/ubuntu_practice
     ports:
       - "8002:22"
     hostname: client_one
   ub_3: #root:root
-    build: ./images/ubuntu_practice
+    build: ../images/ubuntu_practice
     ports:
       - "8003:22"
     hostname: client_two
