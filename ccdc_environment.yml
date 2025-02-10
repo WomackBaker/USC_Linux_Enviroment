@@ -1,43 +1,29 @@
 version: "3.9"
 services:
   jump_box:
-      build: ../images/jump_box
+      build: ./images/jump_box
       ports:
-        - "1234:22"
+        - "8001:22"
       hostname: jump_box
   ub_1:
-    build: ../images/ubuntu_practice
-    ports:
-      - "8400:22"
-      - "8401:80"
+    build: ./images/ubuntu_practice
     hostname: web_one
   ub_2:
-    build: ../images/ubuntu_practice
-    ports:
-      - "8500:22"
-      - "8501:80"
+    build: ./images/ubuntu_practice
     hostname: web_two
   ub_3:
-    build: ../images/ubuntu_practice
-    ports:
-      - "8600:22"
-      - "8601:80"
+    build: ./images/ubuntu_practice
     hostname: web_three
   centos: 
   #ssh -p 8700 -i vagrant app-admin@localhost
   #https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant
     image: jdeathe/centos-ssh
-    ports:
-      - "9100:22"
     hostname: centos
   fd_1: #user:password
-    build: ../images/fedora_practice
-    ports:
-      - "9200:22"
+    build: ./images/fedora_practice
     environment:
       SSH_USERPASS: password
     hostname: fd_1
-
 
   splunk:
     image: splunk/splunk:latest
@@ -47,3 +33,7 @@ services:
     environment:
       SPLUNK_START_ARGS: --accept-license
       SPLUNK_PASSWORD: adminadmin
+  
+  rocky: #user:password
+    build: ./images/rocky_practice
+    hostname: rocky

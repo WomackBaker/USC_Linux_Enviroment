@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  ub_1: #root:root
+    build: ./images/ubuntu_practice
+    hostname: server
+  ub_2: #root:root
+    build: ./images/ubuntu_practice
+    hostname: client_one
+  ub_3: #root:root
+    build: ./images/ubuntu_practice
+    hostname: client_two
+  jump: #docker:docker
+    build: ./images/jump_box
+    ports:
+      - "8001:22"
+    hostname: jump

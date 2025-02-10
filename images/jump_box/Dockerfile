@@ -1,21 +1,22 @@
-FROM ubuntu:18.04
+FROM ubuntu:latest
 
-ENV DEBIAN_FRONTEND=noninteractive
+# Install required packages
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    net-tools \
+    nmap \
+    git \
+    openssh-server && \
+    rm -rf /var/lib/apt/lists/*
 
+# Configure SSH server
+RUN mkdir /var/run/sshd && \
+    echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config && \
+    echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \
+    echo 'root:root' | chpasswd
 
-RUN apt update && apt upgrade -y
-RUN apt install vim net-tools curl sudo man netcat nmap -y
-RUN apt install openssh-server -y
+# Expose SSH port
+EXPOSE 22
 
-RUN echo "root:root" | chpasswd
-
-RUN chmod u+s /bin/bash
-RUN chmod u+s /bin/sh
-RUN chmod u+s /usr/bin/python3
-
-
-COPY script.sh /run.sh
-RUN chmod +x /run.sh
-
-CMD ["bash", "-c", "while true; do sleep 1; done"]
-ENTRYPOINT ["/run.sh"]
+# Start SSH server
+CMD ["/usr/sbin/sshd", "-D"]

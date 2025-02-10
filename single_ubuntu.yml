@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  ub_1: #root:root
+    build: ./images/ubuntu_practice
+    ports:
+        - "8001:22"
+    hostname: ubuntu
