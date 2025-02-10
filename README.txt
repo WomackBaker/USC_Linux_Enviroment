@@ -13,12 +13,7 @@ https://www.docker.com/get-started/
     Command - ssh root@localhost -p #port
 
     SSH Ports:
-    - 8400
-    - 8500
-    - 8600
-    - 9000
-    - 9100
-    - 9200
+    - 8001
 
     Passwords:
     root
