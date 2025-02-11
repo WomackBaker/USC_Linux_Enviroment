@@ -6,9 +6,6 @@ https://www.docker.com/get-started/
 
 2. Start Docker Desktop
 
-3. Create docker network 
-    docker network create my_secure_network --driver=bridge --subnet=192.168.200.0/24
-
 3. In the terminal run
     docker-compose -f .\dockerfiles\ccdc_environment.yml up
 
