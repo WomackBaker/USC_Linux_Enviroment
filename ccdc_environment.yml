@@ -1,29 +1,65 @@
-version: "3.9"
+networks:
+  docker_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
 services:
   jump_box:
       build: ./images/jump_box
       ports:
         - "8001:22"
       hostname: jump_box
+      cap_add:
+      - NET_ADMIN
+      networks:
+        docker_network:
+          ipv4_address: 192.168.100.10
   ub_1:
     build: ./images/ubuntu_practice
     hostname: web_one
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.11
   ub_2:
     build: ./images/ubuntu_practice
     hostname: web_two
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.12
   ub_3:
     build: ./images/ubuntu_practice
     hostname: web_three
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.13
   centos: 
   #ssh -p 8700 -i vagrant app-admin@localhost
   #https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant
     image: jdeathe/centos-ssh
     hostname: centos
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.14
+
   fd_1: #user:password
     build: ./images/fedora_practice
     environment:
       SSH_USERPASS: password
     hostname: fd_1
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.15
 
   splunk:
     image: splunk/splunk:latest
@@ -33,7 +69,17 @@ services:
     environment:
       SPLUNK_START_ARGS: --accept-license
       SPLUNK_PASSWORD: adminadmin
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.16
   
   rocky: #user:password
     build: ./images/rocky_practice
     hostname: rocky
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.17

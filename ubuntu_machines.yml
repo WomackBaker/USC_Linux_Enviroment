@@ -1,16 +1,45 @@
-version: "3.9"
+networks:
+  docker_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+
 services:
-  ub_1: #root:root
+  ub_1:
     build: ./images/ubuntu_practice
     hostname: server
-  ub_2: #root:root
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.10
+
+  ub_2:
     build: ./images/ubuntu_practice
     hostname: client_one
-  ub_3: #root:root
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.11
+
+  ub_3:
     build: ./images/ubuntu_practice
     hostname: client_two
-  jump: #docker:docker
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.12
+
+  jump:
     build: ./images/jump_box
     ports:
       - "8001:22"
     hostname: jump
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.100

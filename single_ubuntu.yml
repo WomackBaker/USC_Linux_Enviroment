@@ -1,7 +1,18 @@
-version: "3.9"
+networks:
+  docker_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.100.0/24
+
 services:
   ub_1: #root:root
     build: ./images/ubuntu_practice
     ports:
         - "8001:22"
     hostname: ubuntu
+    cap_add:
+      - NET_ADMIN
+    networks:
+      docker_network:
+        ipv4_address: 192.168.100.12

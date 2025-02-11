@@ -6,6 +6,9 @@ https://www.docker.com/get-started/
 
 2. Start Docker Desktop
 
+3. Create docker network 
+    docker network create my_secure_network --driver=bridge --subnet=192.168.200.0/24
+
 3. In the terminal run
     docker-compose -f .\dockerfiles\ccdc_environment.yml up
 
@@ -22,23 +25,6 @@ https://www.docker.com/get-started/
     Usernames:
     admin
     root
-
-# Somethings you should be do to harden:
-- Change all Passwords
-- Change database Passwords
-- Find any unused/exposed ports
-- Enable and config firewall
-- Check for backdoors or malicous processes
-- Update System
-- Shut down any unsed services
-- Update packages
-- Check and config logs
-- Remove root login
-- Remove users from sudo if not needed
-- Harden SSH config files
-- Harden web config files
-- Check for crontabs
-
 
 5. To stop the enviroment 
     docker-compose -f .\dockerfiles\ccdc_environment.yml down
